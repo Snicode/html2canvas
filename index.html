@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title></title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <script src="jquery-1.7.1.js"></script>
+    <link rel="stylesheet" href="css.css">
+</head>
+
+<body>
+    <style>
+    body {
+        font-family: 微软雅黑
+    }
+    
+    .picture {
+        background: #fff none repeat scroll 0 0;
+        width: 700px;
+        padding: 30px 0;
+        margin: auto;
+        position: relative;
+    }
+    
+    .picture h1 {
+        text-align: center;
+        font-weight: normal;
+    }
+    
+    .picture h2 {
+        font-family: 黑体;
+        font-size: 37px;
+        font-weight: 700;
+        text-align: center;
+    }
+    
+    .cont {
+        margin: auto;
+        overflow: hidden;
+        padding-top: 10px;
+        position: relative;
+        width: 420px;
+    }
+    
+    .cont .fileUploadContent {
+        width: 120px;
+        float: left;
+        margin-right: 15px;
+    }
+    
+    .subberProgress,
+    .fileName {
+        display: none !important
+    }
+    
+    .cont ul {
+        float: left;
+    }
+    
+    .cont ul li {
+        color: #444;
+        font-size: 15px;
+    }
+    
+    .cont ul li input {
+        border: medium none;
+        color: #444;
+        font-size: 15px;
+        margin-left: 10px;
+        width: 190px;
+    }
+    
+    .btn {
+        background: #ef4f2f none repeat scroll 0 0;
+        border-radius: 12px;
+        color: #fff;
+        font-size: 21px;
+        margin: 50px auto 0;
+        padding: 10px 34px;
+        text-align: center;
+        width: 95px;
+    }
+    
+    #uplod {}
+    
+    #imgsrc {
+        background: #fff none repeat scroll 0 0;
+        border: 0 solid #e3e3e3;
+        float: left;
+        height: 120px;
+        margin: 0 15px 0 20px;
+        overflow: hidden;
+        width: 170px;
+    }
+    
+    .hide {
+        display: none
+    }
+    
+    #fileUploadContent {
+        text-align: center;
+        padding-top: 20px;
+    }
+    
+    .box {
+        display: none !important
+    }
+    
+    #Upload img {
+        width: 120px;
+        float: left;
+        margin-top: 10px;
+        margin-right: 15px;
+    }
+    
+    .zh {
+        border: 1px solid #444;
+        display: inline-block;
+        overflow: hidden;
+        position: absolute;
+        right: 80px;
+        text-align: center;
+        top: 140px;
+        width: 60px;
+    }
+    
+    span.zh span:nth-of-type(1) {
+        display: block;
+        text-align: center;
+        border-bottom: 1px solid #444;
+    }
+    
+    span.zh span:nth-of-type(2) {
+        border-right: 1px solid #444;
+        float: left;
+        width: 30px;
+    }
+    
+    span.zh span:nth-of-type(3) {}
+    
+    .fileUploadContent span {
+        background: #54e4a0 none repeat scroll 0 0;
+        border-radius: 10px;
+        color: #fff;
+        padding: 10px 30px;
+    }
+    
+    .fileUploadContent input {
+        opacity: 0;
+        position: absolute;
+        cursor: pointer;
+        z-index: 5;
+    }
+
+
+  .zh input {
+      border: medium none;
+      color: #444;
+      text-align: center;
+      width: 22px;
+  }
+
+  .Upload{  float: left;
+    margin-right: 10px;
+    width: 120px; }
+    </style>
+    <div id="fileUploadContent" class="fileUploadContent">
+        <img id="preview" />
+        <br />
+        <input type="file" name="file" onchange="imgPreview(this)" />
+        <span>请先选择图片</span>
+    </div>
+    <div class="picture hide formlimit" id="tbl_exception">
+        <h1>2017年福建省普通高等学校招生统一考试</h1>
+        <h2>准&nbsp;&nbsp;&nbsp;考&nbsp;&nbsp;&nbsp;证</h2>
+        <div class="cont">
+            <div id="Upload" class="Upload"><img src="" alt=""></div>
+            <ul>
+                <li>准考证号 :
+                    <input type="text">
+                </li>
+                <li>姓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名 :
+                    <input type="text">
+                </li>
+                <li>性&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;别 :
+                    <input type="text">
+                </li>
+                <li>考&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;点 :
+                    <input type="text">
+                </li>
+                <li>报考科目 :
+                    <input type="text">
+                </li>
+
+                <li>考&nbsp;&nbsp;生&nbsp;&nbsp;号 :
+                    <input type="text">
+                </li>
+            </ul>
+
+
+        </div>
+        <span class="zh">
+      <span>座号</span>
+        <span><input type="text"></span>
+        <span><input type="text"></span>
+        </span>
+    </div>
+    <div class="btn" id="btn_screen">点击生成</div>
+    <script type="text/javascript" src="js/fileUpload.js"></script>
+    <script type="text/javascript">
+    function imgPreview(fileDom) {
+        //判断是否支持FileReader
+        if (window.FileReader) {
+            var reader = new FileReader();
+        } else {
+            alert("您的设备不支持图片预览功能，如需该功能请升级您的设备！");
+        }
+
+        //获取文件
+        var file = fileDom.files[0];
+        var imageType = /^image\//;
+        //是否是图片
+        if (!imageType.test(file.type)) {
+            alert("请选择图片！");
+            return;
+        }
+        //读取完成
+        reader.onload = function(e) {
+            $('.fileUploadContent').hide();
+            $('#tbl_exception').show();
+
+            //获取图片dom
+            var img = document.getElementById("preview");
+            //图片路径设置为读取的图片
+            img.src = e.target.result;
+
+            var _upimg = $('#preview').attr('src');
+            $('#Upload img').attr('src', _upimg);
+
+
+        };
+        reader.readAsDataURL(file);
+    }
+    </script>
+
+    <script type="text/javascript" src="html2canvas.min.js"></script>
+    <script type="text/javascript">
+
+    // 生成图片
+    $("#btn_screen").on("click", function() {
+        html2canvas($("#tbl_exception"), {
+            height: $("#tbl_exception").height() + 150,
+            onrendered: function(canvas) {
+                var url = canvas.toDataURL();
+                $('#imgsrc img').attr("src", url).appendTo("figure");
+                $('#imgsrc').show();
+                // $('.formlimit').hide();
+                $('#ul>li').removeClass('oversd');
+                // $('#bgshow').hide();
+                //以下代码为下载此图片功能
+                var triggerDownload = $("<a>").attr("href", url).attr("download", "准考证.png").appendTo("body");
+                triggerDownload[0].click();
+                triggerDownload.remove();
+            }
+        });
+    })
+    </script>
+</body>
+
+</html>

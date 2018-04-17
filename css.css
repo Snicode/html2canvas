@@ -1,0 +1,89 @@
+@charset "utf-8";
+
+body {
+  margin:0;
+}
+ul,li{ list-style: none; margin:0 ; padding: 0; }
+
+.contain{
+  width: 600px; margin:150px auto 10px;
+    background: #fafafa;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+#ul > li{position: relative; overflow: hidden; margin-bottom: 20px;}
+#ul > li > span{ color: #444; float: left;}
+#ul > li .flr a{ background: #ff6600 none repeat scroll 0 0;
+    color: #ffffff;
+    display: inline-block;
+    padding: 10px 30px;
+    text-decoration: none;}
+
+
+/* .formlimit, */
+/* #ul > li .flr a#edit{ display: none; } */
+
+/* 
+.formlimit{   background: #fff none repeat scroll 0 0;
+    border-radius: 6px;
+    left: 0;
+    margin: auto;
+    padding: 20px;
+    position: absolute;
+    right: 0;
+    width: 500px;
+    z-index: 11;} */
+/* .formlimit li{margin-bottom: 10px; */
+/* } */
+.formlimit li em{   color: #444;
+    display: inline-block;
+    font-style: normal;
+    padding-right: 11px;
+    text-align: right;
+    width: 120px; }
+.formlimit li input{background: #fff none repeat scroll 0 0;
+    border: 1px solid #afafaf;  width: 260px;
+    padding: 5px;}
+
+#submitbtn{ text-align: center; }
+
+#submitbtn input{  background: #10bf20 none repeat scroll 0 0;
+    border: medium none;
+    color: #fff;  cursor: pointer;
+    padding: 10px 30px;}
+
+#bgshow{  background: rgba(0, 0, 0, 0.5) none repeat scroll 0 0;
+    height: 100%;
+    left: 0;
+    display: none;
+    position: fixed;
+    right: 0;
+    top: 0;
+    width: 100%;
+    z-index: 10;}
+
+.formlimit > ul{
+   background: #fff none repeat scroll 0 0;
+    border-radius: 10px;
+    padding: 20px;
+}
+
+#imgsrc{
+    background: #fff none repeat scroll 0 0;
+ border: 1px solid #e3e3e3;
+    height: 120px;
+    margin: 0 0 0 20px;
+    overflow: hidden;
+    float: left;
+    width: 260px;
+}
+#imgsrc img{ width: 100%; }
+#ul > li.oversd{ overflow: unset; }
+#imgsrc.maxed{  height: auto;
+    overflow: unset;
+    position: absolute;
+    width: auto;
+    z-index: 11;}
+.maxed img{}
+.flr{float: right;}
